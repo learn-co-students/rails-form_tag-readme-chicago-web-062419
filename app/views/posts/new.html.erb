@@ -1,0 +1,60 @@
+<h3>Post Form</h3>
+<!--
+<form action="<%= posts_path %>" method="POST">
+<%# Above action makes the form redirect to `/posts` %>
+<%# We also need to add a `method` attribute so that the application knows that we are submitting form data via the `POST` HTTP verb: %>
+  <label>Post title:</label><br>
+  <input type="text" id="post_title" name="post[title]"><br>
+<%# The input entered into the "Post title:" field in the above form would be stored as the value of %>
+<%# `params[:post][:title]` %>
+  <label>Post description:</label><br>
+  <textarea id="post_description" name="post[description]"></textarea><br>
+<%# The input entered into the "Post title:" field in the above form would be stored as the value of %>
+<%# `params[:post][:description]` %>
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <%# Above is the `form_authenticity_token` %>
+  <input type="submit" value="Submit Post">
+  <%# The input above is a simple submit button %>
+</form>
+
+<%= params.inspect %>
+###Code below is cleaned up and uses tags###
+-->
+
+<!--<%= form_tag posts_path do %>
+  <label>Post title:</label><br>
+  <input type="text" id="post_title" name="post[title]"><br>
+
+  <label>Post description:</label><br>
+  <textarea id="post_description" name="post[description]"></textarea><br>
+
+  Hidden tag reduntant with "form_tag"
+  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+  <%# <input type="hidden" name="authenticity_token" value="<%= %> <%# form_authenticity_token %> <%# This code above is equal to code above that just using tag%> -->
+  <!--<input type="submit" value="Submit Post">
+<% end %>-->
+
+<%= form_tag posts_path do %>
+  <label>Post title:</label><br>
+  <%= text_field_tag :'post[title]' %><br>
+
+  <label>Post description:</label><br>
+  <%= text_area_tag :'post[description]' %><br>
+
+  <%= submit_tag "Submit Post" %>
+<% end %>
+<!--Above code is the cleanest, implements tags, while maintaining secuirty with authenticity token -->
+
+<!-- Raw HTML below:
+<form action="/posts" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="vq9SMVNk0CjwgZmYomFRhwbo5dfu7tI/2FiR7jOtlVgbj8r/zOO5oL+arU9N4PMm7WqxbUbXg4wqneW02ZfpMw==" />
+  <label>Post title:</label><br>
+  <input type="text" name="post[title]" id="post_title" /><br>
+
+  <label>Post description:</label><br>
+  <textarea name="post[description]" id="post_description">
+</textarea><br>
+
+  <input type="submit" name="commit" value="Submit Post" />
+</form>
+
+-->
